@@ -133,7 +133,7 @@
 					<div class="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
 						<div class="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 lg:py-4">
 							<div class="relative z-20 flex w-full justify-between md:px-0 lg:w-max">
-								<a href="/#" aria-label="ampire logo" class="text-xl uppercase nav-link flex items-center space-x-2">Alya Sveltekit SaaS</a>
+								<a href="/#" aria-label="ampire logo" class="text-xl nav-link flex items-center space-x-2">Sweve.AI - Simple AI for Business</a>
 								
 								<button aria-label="humburger" id="hamburger" class="relative -mr-6 p-6 lg:hidden" on:click={() => drawerStore.open(settings)}>
 									<div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
@@ -154,27 +154,18 @@
 											<!-- Render "null" if data does not have Subscription property -->
 											<p>Subscription: 0</p>
 											{/if}
-											
-										
 										</p1>
+
 										<li>
 											<a href="/#" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
-												<span>Homepage</span>
+												<span>Home</span>
 											</a>
 										</li>
 										<li>
-											<a href="/Info" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
-												<span>Info</span>
-											  </a>
-										</li>
-										<li>
 											<a href="" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
-												<span>Product 
-													
-												</span>
+												<span>Platform</span>
 											  </a>
 										</li>
-										
 										<li>
 											<a href="/#features" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 												<span>Features</span>
@@ -233,16 +224,11 @@
 						</div>
 					</div>
 				</nav>
-				
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				
 			</svelte:fragment>
 		</AppBar>
 		<!-- App Bar -->
-
-		
-		
 	</svelte:fragment>
 	<!-- Page Route Content -->
 	<slot />

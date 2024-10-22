@@ -4,48 +4,39 @@
 
 
 <section id="home" class="pt-32 sm:pt-40 md:pt-28">
-	
 	<div class="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
 		<div class="relative">
-			
 			<div class="relative gap-12 lg:flex">
 				<div>
 					<h1 class="text-center font-bold text-5xl sm:text-6xl lg:w-4/8 lg:text-left lg:text-7xl">
-						Ship your own<br/> startup fast⚡
-				
+						AI Chat & RAG<br/> For Your Business⚡
 					</h1>				
 					<br />
 					<p class="text-center text-3xl sm:text-3xl lg:text-left lg:text-3xl">
-						The ultimate Sveltekit Skeleton UI <br/>template to build your SaaS startup <br/>product in days. Not forever!
+						The ultimate scalable & operationalised <br/>AI based business knowledge management <br/>from
+						200+ sources at your fingertips!
 					</p>
 
 					<div class="text-center text-3xl sm:text-3xl lg:w-9/12 lg:text-left lg:text-3xl">
-						<p class="mt-12 text-lg sm:text-xl">Ship your new SaaS product fast! No overwhelmed on tech stack anymore</p>
+						<p class="mt-12 text-lg sm:text-xl">Simple Chat & Remote Rag <br/> No overwhelming tech stack anymore</p>
 						<p class="flex justify-center items-center mt-12 text-lg text-gray-600 dark:text-gray-300 sm:text-xl"></p>
 						
 						<div class="flex justify-center items-center">
 							<button class="flex flex-col space-y-2 sm:flex-row md:w-max lg:space-y-0">
 								<a href="/" class="relative flex h-9 w-full justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-125">
-									<span class="relative text-sm font-semibold btn variant-filled-secondary">Start</span>
+									<span class="relative text-sm font-semibold btn variant-filled-secondary">Try Now!</span>
 								</a>
 							</button>
 						</div>
-	
-				
 					</div>
 				</div>
 
 				<div class="text-center rounded-3xl mt-12 overflow-hidden sm:mt-12 sm:w-full lg:-mt-6 lg:w-4/12 anim-float-card">
 					<img class="w-full" src="./images/Roshidere.png" alt="project illustration" style="width:auto"/>
-					<p class="text-lg sm:text-xl">Ship your waifu✅<br/>(Alya Roshidere)</p>
 				</div>
-				
 			</div>
 
 			<div class="relative gap-12 lg:flex">
-				
-				
-				
 			</div>
 			
 		</div>
