@@ -58,7 +58,7 @@
 		<div class="mt-16 grid gap-8 sm:mx-auto sm:w-2/3 md:w-full md:grid-cols-2 lg:grid-cols-3">
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172532.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Local & Remote RAG</h3>
 						<p class="text-gray-600 dark:text-gray-300">Dive into the future of chat interactions and explore your documents with our cutting-edge Retrieval Augmented Generation (RAG) technology within your chats.</p>
@@ -72,7 +72,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/7211/7211809.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">300+ Data Source Integrations</h3>
 						<p class="text-gray-600 dark:text-gray-300">Access Data from Salesforce, Confluence, Sharepoint, S3, Hubspot, SQL Server, Google Drive & MS OneDrive and hundreds more</p>
@@ -86,7 +86,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172533.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Chat AI Assistant</h3>
 						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, data remains the biggest bottleneck to AI.</p>
@@ -100,7 +100,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172512.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Llama 3.x Models</h3>
 						<p class="text-gray-600 dark:text-gray-300">We provide Llama 1B, 3B, 11B & 90B models out of the box ensuring right hardware resources and top performance.</p>
@@ -114,7 +114,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172505.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Bring Your Own Model</h3>
 						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, you can bring your own or third party model.</p>
@@ -128,7 +128,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172517.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Hands-Free Voice/Video Call</h3>
 						<p class="text-gray-600 dark:text-gray-300">Initiate voice & video calls (with supported vision models) without needing to use your hands, making interactions more seamless</p>
@@ -142,7 +142,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172546.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Web Browsing Capability</h3>
 						<p class="text-gray-600 dark:text-gray-300">Incorporation of web content directly into your conversations, thereby enhancing the richness and depth of your interactions</p>
@@ -156,7 +156,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172544.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Concurrent Model Utilization</h3>
 						<p class="text-gray-600 dark:text-gray-300">Engage with multiple models simultaneously, harnessing their unique strengths for optimal responses</p>
@@ -170,7 +170,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172540.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Image Generation</h3>
 						<p class="text-gray-600 dark:text-gray-300">Image generation capabilities to enrich your chat experience with dynamic visual content</p>
@@ -184,7 +184,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6172/6172522.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Role Based Access Control</h3>
 						<p class="text-gray-600 dark:text-gray-300">Ensure secure access with restricted permissions</p>
@@ -198,7 +198,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6569/6569127.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">Admin Controls</h3>
 						<p class="text-gray-600 dark:text-gray-300">Trusted emails communication, revere proxy, authentication, models whitelisting, admin dashboard</p>
@@ -212,7 +212,7 @@
 			</div>
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
-					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<img src="https://cdn-icons-mp4.flaticon.com/512/6569/6569150.mp4" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
 						<h3 class="text-2xl font-semibold transition">SSO</h3>
 						<p class="text-gray-600 dark:text-gray-300">SSO, OAuth, SAML 2 & OIDC via Federated Authentication for power business users</p>
