@@ -31,8 +31,8 @@
 					</div>
 				</div>
 
-				<div class="text-center rounded-3xl mt-12 overflow-hidden sm:mt-12 sm:w-full lg:-mt-6 lg:w-4/12 anim-float-card">
-					<img class="w-full" src="./images/Roshidere.png" alt="project illustration" style="width:auto"/>
+				<div class="text-center rounded mt-12 overflow-hidden sm:mt-12 sm:w-full lg:-mt-6 lg:w-4/12 anim-float-card">
+					<img class="w-full" src="./images/people.jpg" alt="project illustration" style="width:auto"/>
 				</div>
 			</div>
 
@@ -44,7 +44,6 @@
 </section>
 
 <section id="features" class="relative mb-32 pt-40">
-	
 	<!-- <div aria-hidden="true" class="absolute inset-0 top-60 grid grid-cols-2 -space-x-52 opacity-25 dark:opacity-70">
 		<div class="h-60 bg-gradient-to-br from-primary to-purple-400 blur-[106px] dark:from-blue-700"></div>
 		<div class="h-40 bg-gradient-to-r from-cyan-400 to-sky-300 blur-[106px] dark:to-indigo-600"></div>
@@ -53,14 +52,43 @@
 		<div class="text-center">
 			<h2 class="text-4xl font-bold xl:text-5xl">Features
 			</h2>
-			<p class="mx-auto mt-6 md:w-3/4 lg:w-3/5">Whether you’re building your own models or applying foundation models to your business, data remains the biggest bottleneck to AI. </p>
+			<p class="mx-auto mt-6 md:w-3/4 lg:w-3/5">Whether you’re building your own models or applying foundation models to your business,
+				data, data integration and real-time data integration remains the biggest bottleneck to AI. </p>
 		</div>
 		<div class="mt-16 grid gap-8 sm:mx-auto sm:w-2/3 md:w-full md:grid-cols-2 lg:grid-cols-3">
 			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
 				<div class="space-y-12 text-center">
 					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
-						<h3 class="text-2xl font-semibold transition">Feature</h3>
+						<h3 class="text-2xl font-semibold transition">Local & Remote RAG</h3>
+						<p class="text-gray-600 dark:text-gray-300">Dive into the future of chat interactions and explore your documents with our cutting-edge Retrieval Augmented Generation (RAG) technology within your chats.</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">300+ Data Source Integrations</h3>
+						<p class="text-gray-600 dark:text-gray-300">Access Data from Salesforce, Confluence, Sharepoint, S3, Hubspot, SQL Server, Google Drive & MS OneDrive and hundreds more</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Chat AI Assistant</h3>
 						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, data remains the biggest bottleneck to AI.</p>
 						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
@@ -74,8 +102,8 @@
 				<div class="space-y-12 text-center">
 					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
-						<h3 class="text-2xl font-semibold transition">Feature</h3>
-						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, data remains the biggest bottleneck to AI.</p>
+						<h3 class="text-2xl font-semibold transition">Llama 3.x Models</h3>
+						<p class="text-gray-600 dark:text-gray-300">We provide Llama 1B, 3B, 11B & 90B models out of the box ensuring right hardware resources and top performance.</p>
 						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
 								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
@@ -88,8 +116,8 @@
 				<div class="space-y-12 text-center">
 					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
 					<div class="space-y-6">
-						<h3 class="text-2xl font-semibold transition">Feature</h3>
-						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, data remains the biggest bottleneck to AI.</p>
+						<h3 class="text-2xl font-semibold transition">Bring Your Own Model</h3>
+						<p class="text-gray-600 dark:text-gray-300">Whether you’re building your own models or applying foundation models to your business, you can bring your own or third party model.</p>
 						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
 								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
@@ -98,7 +126,104 @@
 					</div>
 				</div>
 			</div>
-		
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Hands-Free Voice/Video Call</h3>
+						<p class="text-gray-600 dark:text-gray-300">Initiate voice & video calls (with supported vision models) without needing to use your hands, making interactions more seamless</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Web Browsing Capability</h3>
+						<p class="text-gray-600 dark:text-gray-300">Incorporation of web content directly into your conversations, thereby enhancing the richness and depth of your interactions</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Concurrent Model Utilization</h3>
+						<p class="text-gray-600 dark:text-gray-300">Engage with multiple models simultaneously, harnessing their unique strengths for optimal responses</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Image Generation</h3>
+						<p class="text-gray-600 dark:text-gray-300">Image generation capabilities to enrich your chat experience with dynamic visual content</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Role Based Access Control</h3>
+						<p class="text-gray-600 dark:text-gray-300">Ensure secure access with restricted permissions</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">Admin Controls</h3>
+						<p class="text-gray-600 dark:text-gray-300">Trusted emails communication, revere proxy, authentication, models whitelisting, admin dashboard</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card p-4 rounded-3xl border-gray-100 shadow-gray-600/10 sm:p-12">
+				<div class="space-y-12 text-center">
+					<img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" class="mx-auto h-14 w-auto" width="512" height="512" alt="burger illustration" />
+					<div class="space-y-6">
+						<h3 class="text-2xl font-semibold transition">SSO</h3>
+						<p class="text-gray-600 dark:text-gray-300">SSO, OAuth, SAML 2 & OIDC via Federated Authentication for power business users</p>
+						<a aria-label="read more" href="/" class="group relative mx-auto flex h-12 w-12 items-center justify-center before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-transtransition-transform relative h-5 w-5 text-gray-600 duration-300 group-hover:translate-x-1 dark:text-white">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
 		
 			
 			
