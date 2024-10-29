@@ -22,7 +22,7 @@
 						<p class="flex justify-center items-center mt-12 text-lg text-gray-600 dark:text-gray-300 sm:text-xl"></p>
 						
 						<div class="flex justify-center items-center">
-							<button class="flex flex-col space-y-2 sm:flex-row md:w-max lg:space-y-0">
+							<button class="flex flex-col space-y-2 sm:flex-row md:w-max lg:space-y-0" onclick="window.location.hash = 'pricing';">
 								<a href="/" class="relative flex h-9 w-full justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-125">
 									<span class="relative text-sm font-semibold btn variant-filled-secondary">Try Now!</span>
 								</a>
