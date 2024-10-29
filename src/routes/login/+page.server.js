@@ -18,57 +18,38 @@ export const actions = {
 		);
 
 		if (errors) {
+			// Return validation errors
 			return {
-				status: 400,
-				body: {
-					data: formData,
-					errors: errors.fieldErrors
-				}
+				data: formData,
+				errors: errors.fieldErrors
 			};
 		}
 
 		try {
-			console.log(formData.email)
-			await locals.pb
-				.collection("users")
-				.authWithPassword(formData.email, formData.password);
+			await locals.pb.collection("users").authWithPassword(formData.email, formData.password);
 			if (!locals.pb?.authStore?.model?.verified) {
 				locals.pb.authStore.clear();
 				return {
-					notVerified: true,
+					notVerified: true
 				};
 			}
 
 			throw redirect(307, "/");
 		} catch (err) {
-			console.log("Error: ", err?.data?.message);
-			if (err?.data?.message){
-				console.log("Wrong")
+			console.error("Login error:", err); // Log the error for debugging
+
+			// Assuming err.data contains the error message from the backend
+			if (err.data) {
 				return {
-					InvalidCred: true,
-				};      
-			} 
+					data: formData,
+					errors: { email: err.data.message || "Invalid credentials" }
+				};
+			} else {
+				return {
+					data: formData,
+					errors: { email: "An unexpected error occurred" }
+				};
+			}
 		}
-	},
-
-	OAuth: async({cookies,url,locals})=>{
-        const authMethods = await locals.pb?.collection('users').listAuthMethods();
-        if (!authMethods) {
-            return {
-                authProviderRedirect: '',
-                authProviderState: ''
-            };
-        }
-        const redirectURL = `${url.origin}/oauth`;
-        const googleAuthProvider = authMethods.authProviders[0];
-        const authProviderRedirect = `${googleAuthProvider.authUrl}${redirectURL}`;
-        const state = googleAuthProvider.state;
-        const verifier = googleAuthProvider.codeVerifier
-
-        cookies.set('state',state);
-        cookies.set('verifier',verifier);
-
-		console.log("oauth ready")
-        throw redirect(302,authProviderRedirect)
-    },
+	}
 };

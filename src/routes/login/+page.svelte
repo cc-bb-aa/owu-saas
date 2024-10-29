@@ -2,7 +2,8 @@
 	import { enhance } from '$app/forms';
 	import { Input } from '$lib/components';
 	import toast from 'svelte-french-toast';
-	export let form;
+
+	export let form = null;
 	let loading = false;
 
 
@@ -13,15 +14,20 @@
 				case 'success':
 					await update();
 					break;
-				case 'invalid':
-					toast.error('Invalid credentials');
-					await update();
-					break;
 				case 'error':
-					toast.error(result.error.message);
+				case 'invalid':
+					toast.error('Invalid credentials'); // General error message
+					if (result.data) {
+						// Update form with server-returned data and errors
+						form = {
+							errors: result.data.errors || {},
+							data: result.data.data || {}
+						};
+					}
 					break;
-				default:
-					await update();
+				case 'notVerified':
+					toast.error('Your account has not been verified');
+					break;
 			}
 			loading = false;
 		};
@@ -30,42 +36,14 @@
 
 
 <div class="p-5 flex flex-col items-center h-full w-full pt-32 sm:pt-40 md:pt-28">
-	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-		Login
-	</h2>
-	<p class="text-center mt-1">
-		or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline yellow"
-			>Register</a
-		> if you don't have an account
+	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">Login</h2>
+	<p class="text-center mt-1">or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline yellow">Register</a> if you don't have an account
 	</p>
-	<form
-		action="?/login"
-		method="POST"
-		class="flex flex-col items-center space-y-2 w-full pt-4"
-		use:enhance={submitLogin}
-	>
-		<Input
-			type="email"
-			id="email"
-			label="Email"
-			value={form?.data?.email ?? ''}
-			errors={form?.errors?.email}
-			disabled={loading}
-		/>
-		<Input
-			type="password"
-			id="password"
-			label="Password"
-			errors={form?.errors?.password}
-			disabled={loading}
-		/>
+	<form action="?/login" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4" use:enhance={submitLogin}>
+		<Input type="email" id="email" label="Email" value={form?.data?.email ?? ''} errors={form?.errors?.email} disabled={loading} />
+		<Input type="password" id="password" label="Password" errors={form?.errors?.password} disabled={loading} />
 		<div class="w-full max-w-lg">
-			<a
-				href="/reset-password"
-				class="font-medium text-primary hover:cursor-pointer hover:underline"
-			>
-				Forgot password?</a
-			>
+			<a href="/reset-password" class="font-medium text-primary hover:cursor-pointer hover:underline">Forgot password?</a>
 		</div>
 
 		<div class="w-full max-w-lg pt-2">
@@ -78,14 +56,13 @@
 						xmlns="http://www.w3.org/2000/svg"
 						class="stroke-current flex-shrink-0 h-6 w-6"
 						fill="none"
-						viewBox="0 0 24 24"
-						><path
+						viewBox="0 0 24 24">
+						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
-							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/></svg
-					>
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+					</svg>
 					<span>Please verify your account first!</span>
 				</div>
 			</div>
@@ -98,13 +75,14 @@
 						class="stroke-current flex-shrink-0 h-6 w-6"
 						fill="none"
 						viewBox="0 0 24 24"
-						><path
+					>
+						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
 							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/></svg
-					>
+						/>
+					</svg>
 					<span>Wrong information</span>
 				</div>
 			</div>
