@@ -3,9 +3,8 @@ import PocketBase from 'pocketbase';
 import { serializeNonPOJOs } from '$lib/utils';
 
 export async function handle({ event, resolve }) {
-	console.log("PB Server hook started")
+	console.log("PB Server hook started");
 	event.locals.pb = new PocketBase(import.meta.env.VITE_PB_URL);
-	/* event.locals.pb.admins.authWithPassword(import.meta.env.VITE_AUTH_ADMIN_NAME, import.meta.env.VITE_AUTH_ADMIN_PASS) */
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 	try {
 		if (event.locals.pb.authStore.isValid) {
@@ -16,9 +15,22 @@ export async function handle({ event, resolve }) {
 		event.locals.user = undefined;
 	}
 
-	const response = await resolve(event);
+	const response = await resolve(event, {
+		transformPageChunk: ({ html }) => html,  // If you need to transform HTML
+		filterSerializedResponseHeaders: (name) => name === 'set-cookie'
+	});
 
-	response.headers.append('set-cookie', event.locals.pb.authStore.exportToCookie({ sameSite: 'Lax', secure: true }));
-	//sameSite: 'Lax'
+	// Instead of appending, you can set headers within resolve options or use a mutable headers object
+	if (response.headers.has('set-cookie')) {
+		let cookies = response.headers.get('set-cookie');
+		if (!Array.isArray(cookies)) {
+			cookies = [cookies];
+		}
+		cookies.push(event.locals.pb.authStore.exportToCookie({ sameSite: 'Lax', secure: true }));
+		response.headers.set('set-cookie', cookies);
+	} else {
+		response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ sameSite: 'Lax', secure: true }));
+	}
+
 	return response;
-}; 
+};

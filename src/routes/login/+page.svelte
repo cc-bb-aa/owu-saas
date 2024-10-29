@@ -40,15 +40,18 @@
 	<p class="text-center mt-1">or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline yellow">Register</a> if you don't have an account
 	</p>
 	<form action="?/login" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4" use:enhance={submitLogin}>
-		<Input type="email" id="email" label="Email" value={form?.data?.email ?? ''} errors={form?.errors?.email} disabled={loading} />
+		{#if form?.errors?.email}
+			<div class="text-red-500">{form.errors.email}</div>
+		{/if}
+		<Input type="email" id="email" label="Email" value={form?.data?.email ?? ''} disabled={loading} />
 		<Input type="password" id="password" label="Password" errors={form?.errors?.password} disabled={loading} />
+		<div class="w-full max-w-lg pt-2">
+			<button type="submit" class="btn variant-filled-secondary btn-primary w-full" disabled={loading}>Login</button>
+		</div>
 		<div class="w-full max-w-lg">
 			<a href="/reset-password" class="font-medium text-primary hover:cursor-pointer hover:underline">Forgot password?</a>
 		</div>
 
-		<div class="w-full max-w-lg pt-2">
-			<button type="submit" class="btn variant-filled-secondary btn-primary w-full" disabled={loading}>Login</button>
-		</div>
 		{#if form?.notVerified}
 			<div class="alert alert-error shadow-lg w-full max-w-lg">
 				<div>

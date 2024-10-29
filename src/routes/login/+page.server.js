@@ -1,17 +1,16 @@
-import { redirect, errors } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
 import { validateData } from "$lib/utils";
 import { loginUserSchema } from "$lib/schemas";
 
-console.log("PB Start")
 export const load = ({ locals }) => {
 	if (locals.pb?.authStore.isValid) {
 		throw redirect(303, '/');
 	}
-	
+	return {};
 };
 
 export const actions = {
-	login: async ({ request, locals }) => {
+	login: async ({ request, locals, fetch }) => {  // Add 'fetch' from the event
 		const { formData, errors } = await validateData(
 			await request.formData(),
 			loginUserSchema,
@@ -26,7 +25,26 @@ export const actions = {
 		}
 
 		try {
-			await locals.pb.collection("users").authWithPassword(formData.email, formData.password);
+			// Use event.fetch for internal relative API calls
+			const response = await fetch(`/api/collections/users/auth-with-password`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					identity: formData.email,
+					password: formData.password
+				})
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || "Authentication failed");
+			}
+
+			const data = await response.json();
+			locals.pb.authStore.save(data.token, data.record);
+
 			if (!locals.pb?.authStore?.model?.verified) {
 				locals.pb.authStore.clear();
 				return {
@@ -38,11 +56,11 @@ export const actions = {
 		} catch (err) {
 			console.error("Login error:", err); // Log the error for debugging
 
-			// Assuming err.data contains the error message from the backend
-			if (err.data) {
+			// Assuming err.message contains the error message from the backend
+			if (err.message) {
 				return {
 					data: formData,
-					errors: { email: err.data.message || "Invalid credentials" }
+					errors: { email: err.message }
 				};
 			} else {
 				return {
