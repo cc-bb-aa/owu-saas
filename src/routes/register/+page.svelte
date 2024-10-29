@@ -28,7 +28,7 @@
 		<Input
 			type="email"
 			id="email"
-			label="Email/อีเมล"
+			label="Email"
 			value={form?.data?.email}
 			errors={form?.errors?.email}
 		/>
@@ -36,7 +36,7 @@
 		<Input
 			type="password"
 			id="passwordConfirm"
-			label="Confirm Password/ยืนยันรหัสผ่าน"
+			label="Confirm Password"
 			errors={form?.errors?.passwordConfirm}
 		/>
 		<div class="w-full max-w-lg pt-2">

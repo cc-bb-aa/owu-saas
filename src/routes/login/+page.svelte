@@ -36,10 +36,7 @@
 	<p class="text-center mt-1">
 		or <a href="/register" class="text-primary font-medium hover:cursor-pointer hover:underline yellow"
 			>Register</a
-		> if you dont have one
-	</p>
-	<p class="text-center mt-1">
-		Example account- gmail: test@example.com password: 1234567890
+		> if you don't have an account
 	</p>
 	<form
 		action="?/login"
@@ -50,7 +47,7 @@
 		<Input
 			type="email"
 			id="email"
-			label="Email/อีเมล"
+			label="Email"
 			value={form?.data?.email ?? ''}
 			errors={form?.errors?.email}
 			disabled={loading}
@@ -58,7 +55,7 @@
 		<Input
 			type="password"
 			id="password"
-			label="Password/รหัสผ่าน"
+			label="Password"
 			errors={form?.errors?.password}
 			disabled={loading}
 		/>
@@ -67,7 +64,7 @@
 				href="/reset-password"
 				class="font-medium text-primary hover:cursor-pointer hover:underline"
 			>
-				Forget password?</a
+				Forgot password?</a
 			>
 		</div>
 
@@ -113,16 +110,4 @@
 			</div>
 		{/if}
 	</form>
-	
-	<form class="auth-form flex flex-col items-center space-y-10 w-full pt-4" method="post" action="?/OAuth">
-        <div class="space-y-2">
-            <p>Or</p>
-			<div type="submit" class="btn-auth w-full max-w-lg pt-2">
-				<button disabled={loading}>
-					<img class="btn-auth-img" src='https://gist.githubusercontent.com/JoostvDoorn/32d7b63c69a2522d4b19c43ac01081bd/raw/5c148a2c250d47c62d0ee0eea4a4000682d8b7fd/btn_google_signin_dark_pressed_web.png' alt='google sign in'/>
-				</button>
-			</div>
-        </div>
-
-    </form>
 </div>

@@ -18,10 +18,13 @@ export const actions = {
 		);
 
 		if (errors) {
-			return invalid(400, {
-				data: formData,
-				errors: errors.fieldErrors,
-			});
+			return {
+				status: 400,
+				body: {
+					data: formData,
+					errors: errors.fieldErrors
+				}
+			};
 		}
 
 		try {
@@ -46,29 +49,9 @@ export const actions = {
 				};      
 			} 
 		}
-
-		
-	},
-	loginGoogle: async ({ request, locals }) => {
-
-		console.log("google login")
-		try {
-			locals.pb.authStore.clear()
-      		const authMethods = await locals.pb.collection('users').listAuthMethods()
-			const authData = await locals.pb.collection('users').authWithOAuth2({ provider: 'google' });
-			console.log(locals.pb.authStore.isValid);
-			console.log(authData)
-			console.log(locals.pb.authStore.exportToCookie({ httpOnly: false }))
-		  } catch (e) {
-			console.log(e)
-			console.log("error")
-		  }
-
-		throw redirect(303, "/");
 	},
 
 	OAuth: async({cookies,url,locals})=>{
-
         const authMethods = await locals.pb?.collection('users').listAuthMethods();
         if (!authMethods) {
             return {
@@ -86,11 +69,6 @@ export const actions = {
         cookies.set('verifier',verifier);
 
 		console.log("oauth ready")
-
         throw redirect(302,authProviderRedirect)
-    
-
     },
-	
-
 };
