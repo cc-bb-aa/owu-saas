@@ -10,14 +10,13 @@ export const load = ({ locals }) => {
 };
 
 export const actions = {
-	login: async ({ request, locals, fetch }) => {  // Add 'fetch' from the event
+	login: async ({ request, locals }) => {
 		const { formData, errors } = await validateData(
 			await request.formData(),
 			loginUserSchema,
 		);
 
 		if (errors) {
-			// Return validation errors
 			return {
 				data: formData,
 				errors: errors.fieldErrors
@@ -25,27 +24,14 @@ export const actions = {
 		}
 
 		try {
-			// Use event.fetch for internal relative API calls
-			const response = await fetch(`/api/collections/users/auth-with-password`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					identity: formData.email,
-					password: formData.password
-				})
-			});
+			// Use PocketBase SDK for authentication
+			const authData = await locals.pb.collection('users').authWithPassword(formData.email, formData.password);
 
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(errorData.message || "Authentication failed");
+			if (!authData.token) {
+				throw new Error("Authentication failed");
 			}
 
-			const data = await response.json();
-			locals.pb.authStore.save(data.token, data.record);
-
-			if (!locals.pb?.authStore?.model?.verified) {
+			if (!locals.pb.authStore.model.verified) {
 				locals.pb.authStore.clear();
 				return {
 					notVerified: true
@@ -55,19 +41,10 @@ export const actions = {
 			throw redirect(307, "/");
 		} catch (err) {
 			console.error("Login error:", err); // Log the error for debugging
-
-			// Assuming err.message contains the error message from the backend
-			if (err.message) {
-				return {
-					data: formData,
-					errors: { email: err.message }
-				};
-			} else {
-				return {
-					data: formData,
-					errors: { email: "An unexpected error occurred" }
-				};
-			}
+			return {
+				data: formData,
+				errors: { email: err.data?.message || err.message || "An unexpected error occurred" }
+			};
 		}
 	}
 };

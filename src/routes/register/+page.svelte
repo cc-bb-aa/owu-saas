@@ -24,7 +24,7 @@
 	</p>
 	<!-- <h1>ขณะนี้ยังไม่เปิดให้ลงทะเบียนเนื่องจากเป็นช่วง Beta test <br> แต่คุณสามารถลงทะเบียนสำหรับ Beta test ได้ที่<a href="/" class="text-primary font-medium hover:cursor-pointer hover:underline yellow">หน้าหลัก</a> </h1> -->
 	<form action="?/register" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4">
-		<Input id="name" label="Name/ชื่อ" value={form?.data?.name} errors={form?.errors?.name} />
+		<Input id="name" label="Name" value={form?.data?.name} errors={form?.errors?.name} />
 		<Input
 			type="email"
 			id="email"
@@ -32,7 +32,7 @@
 			value={form?.data?.email}
 			errors={form?.errors?.email}
 		/>
-		<Input type="password" id="password" label="Password/รหัสผ่าน" errors={form?.errors?.password} />
+		<Input type="password" id="password" label="Password" errors={form?.errors?.password} />
 		<Input
 			type="password"
 			id="passwordConfirm"
@@ -94,7 +94,7 @@
 							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
 						/></svg
 					>
-					<span>Password need atleast 8 character</span>
+					<span>Password need at least 8 character</span>
 				</div>
 			</div>
 		{/if}
