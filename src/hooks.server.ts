@@ -1,8 +1,8 @@
-/** @type {import('@sveltejs/kit').Handle} */
+import type { Handle } from '@sveltejs/kit';
 import PocketBase from 'pocketbase';
 import { serializeNonPOJOs } from '$lib/utils';
 
-export async function handle({ event, resolve }) {
+export const handle: Handle = async ({ event, resolve }) => {
 	console.log("PB Server hook started");
 	event.locals.pb = new PocketBase(import.meta.env.VITE_PB_URL);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
@@ -20,10 +20,10 @@ export async function handle({ event, resolve }) {
 	const response = await resolve(event);
 
 	// Manage cookies
-	const cookieOptions = { sameSite: 'Lax', secure: true };
+	const cookieOptions = { sameSite: 'lax', secure: true, httpOnly: true, path: '/' };
 	const cookie = event.locals.pb.authStore.exportToCookie(cookieOptions);
 
 	response.headers.set('set-cookie', cookie);
 
 	return response;
-}
+};

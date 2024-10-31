@@ -8,7 +8,9 @@ export const serializeNonPOJOs = (obj) => {
 };
 
 export const generateUsername = (name) => {
-	const id = randomBytes(2).toString('hex');
+	const id = randomBytes(2)
+		.toString('hex')
+		.replace(/[^a-zA-Z0-9]/g, ''); // Remove any non-alphanumeric characters
 	return `${name.slice(0, 6)}${id}`;
 };
 

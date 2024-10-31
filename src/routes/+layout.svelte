@@ -80,7 +80,7 @@
 						</a>
 					</li> -->
 					<li>
-						<a href="/pricing" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+						<a href="/pricing" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4" >
 							<span>Pricing</span>
 						</a>
 					</li>
