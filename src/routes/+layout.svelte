@@ -17,7 +17,7 @@
 
 	initializeStores();
 
-	
+
 	const drawerStore = getDrawerStore();
 	const settings: DrawerSettings = { id: 'example-1' };
 
@@ -31,25 +31,18 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
+
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	export let data;
 </script>
 <Drawer>
 	{#if $drawerStore.id === 'example-1'}
-	<div id="navlinks" class="items-center w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end p-8 opacity-100 transition-all duration-300 dark:shadow-none lg:visible lg:relative lg:flex lg:w-auto lg:translate-y-0 lg:scale-100 lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none dark:lg:bg-transparent">
-		<div class="dark:text-gray-300 lg:pr-4">
-			<ul class="space-y-6 text-base tracking-wide lg:flex lg:space-y-0 lg:text-sm">
-				<p1 class="nav-link block transition lg:px-4">
-					{#if data?.Subscription}
-					<!-- Render subscription count if data has Subscription property -->
-					<p>Subscription: {data.Subscription}</p>
-					{:else}
-					<!-- Render "null" if data does not have Subscription property -->
-					<p>Subscription: 0</p>
-					{/if}
-					
-				
+		<div id="navlinks"
+				 class="items-center w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end p-8 opacity-100 transition-all duration-300 dark:shadow-none lg:visible lg:relative lg:flex lg:w-auto lg:translate-y-0 lg:scale-100 lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none dark:lg:bg-transparent">
+			<div class="dark:text-gray-300 lg:pr-4">
+				<ul class="space-y-6 text-base tracking-wide lg:flex lg:space-y-0 lg:text-sm">
+					<p1 class="nav-link block transition lg:px-4">
 					</p1>
 					<li>
 						<a href="/#" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
@@ -68,9 +61,10 @@
 							</span>
 						</a>
 					</li>
-					
+
 					<li>
-						<a href="/#features" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+						<a href="/#features"
+							 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 							<span>Features</span>
 						</a>
 					</li>
@@ -80,15 +74,15 @@
 						</a>
 					</li> -->
 					<li>
-						<a href="/pricing" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4" >
+						<a href="/pricing"
+							 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 							<span>Pricing</span>
 						</a>
 					</li>
-					
+
 				</ul>
 			</div>
 
-			
 
 			<!-- 								<a
 				class="btn btn-sm variant-ghost-surface"
@@ -100,7 +94,7 @@
 			</a> -->
 			<div class="dark:text-gray-300 lg:pr-4">
 
-				
+
 			</div>
 			{#if data.user}
 				<form action="/logout" method="POST">
@@ -127,47 +121,50 @@
 <!-- App Shell -->
 <AppShell slot="sidebarLeft">
 	<svelte:fragment slot="header">
-			<AppBar>
+		<AppBar>
 			<svelte:fragment slot="lead">
-				<nav id="navbar" class="fixed h-14 top-0 inset-x-0 z-20 w-full border-b border-gray-100 bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80">
+				<nav id="navbar"
+						 class="fixed h-14 top-0 inset-x-0 z-20 w-full border-b border-gray-100 bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80">
 					<div class="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
 						<div class="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 lg:py-4">
 							<div class="relative z-20 flex w-full justify-between md:px-0 lg:w-max">
-								<a href="/#" aria-label="ampire logo" class="text-xl nav-link flex items-center space-x-2">Sweve.AI - Simple AI for Business</a>
-								
-								<button aria-label="humburger" id="hamburger" class="relative -mr-6 p-6 lg:hidden" on:click={() => drawerStore.open(settings)}>
-									<div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
-									<div aria-hidden="true" id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
+								<a href="/#" aria-label="ampire logo" class="text-xl nav-link flex items-center space-x-2">Sweve.AI -
+									Simple AI for Business</a>
+
+								<button aria-label="humburger" id="hamburger" class="relative -mr-6 p-6 lg:hidden"
+												on:click={() => drawerStore.open(settings)}>
+									<div aria-hidden="true" id="line"
+											 class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
+									<div aria-hidden="true" id="line2"
+											 class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
 								</button>
 							</div>
-							
-							
-							<div aria-hidden="true" id="layer" class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-white/70 backdrop-blur-2xl transition duration-500 dark:bg-darker/70 lg:hidden"></div>
-							<div id="navlinks" class="invisible absolute top-full left-0 z-20 w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end gap-6 rounded-3xl border border-gray-100 bg-white p-8 opacity-0 shadow-2xl shadow-gray-600/10 transition-all duration-300 dark:border-gray-700 dark:bg-gray-800 dark:shadow-none lg:visible lg:relative lg:flex lg:w-auto lg:translate-y-0 lg:scale-100 lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none dark:lg:bg-transparent">
+
+
+							<div aria-hidden="true" id="layer"
+									 class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-white/70 backdrop-blur-2xl transition duration-500 dark:bg-darker/70 lg:hidden"></div>
+							<div id="navlinks"
+									 class="invisible absolute top-full left-0 z-20 w-full origin-top-right translate-y-1 scale-90 flex-col flex-wrap justify-end gap-6 rounded-3xl border border-gray-100 bg-white p-8 opacity-0 shadow-2xl shadow-gray-600/10 transition-all duration-300 dark:border-gray-700 dark:bg-gray-800 dark:shadow-none lg:visible lg:relative lg:flex lg:w-auto lg:translate-y-0 lg:scale-100 lg:flex-row lg:items-center lg:gap-0 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none dark:lg:bg-transparent">
 								<div class="dark:text-gray-300 lg:pr-4">
 									<ul class="space-y-6 text-base tracking-wide lg:flex lg:space-y-0 lg:text-sm">
 										<p1 class="nav-link block transition lg:px-4">
-											{#if data?.Subscription}
-											<!-- Render subscription count if data has Subscription property -->
-											<p>Subscription: {data.Subscription}</p>
-											{:else}
-											<!-- Render "null" if data does not have Subscription property -->
-											<p>Subscription: 0</p>
-											{/if}
 										</p1>
 
 										<li>
-											<a href="/#" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+											<a href="/#"
+												 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 												<span>Home</span>
 											</a>
 										</li>
 										<li>
-											<a href="" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+											<a href=""
+												 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 												<span>Platform</span>
-											  </a>
+											</a>
 										</li>
 										<li>
-											<a href="/#features" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+											<a href="/#features"
+												 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 												<span>Features</span>
 											</a>
 										</li>
@@ -177,24 +174,24 @@
 											</a>
 										</li> -->
 										<li>
-											<a href="/pricing" class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
+											<a href="/pricing"
+												 class="nav-link block transition hover:text-primary dark:hover:text-primaryLight lg:px-4">
 												<span>Pricing</span>
 											</a>
 										</li>
-										
+
 									</ul>
 								</div>
-	
-								
 
-<!-- 								<a
-									class="btn btn-sm variant-ghost-surface"
-									href="https://twitter.com/SkeletonUI"
-									target="_blank"
-									rel="noreferrer"
-								>
-									Twitter
-								</a> -->
+
+								<!-- 								<a
+																	class="btn btn-sm variant-ghost-surface"
+																	href="https://twitter.com/SkeletonUI"
+																	target="_blank"
+																	rel="noreferrer"
+																>
+																	Twitter
+																</a> -->
 								{#if data.user}
 									<form action="/logout" method="POST">
 										<button class="btn btn-sm variant-ghost-surface">

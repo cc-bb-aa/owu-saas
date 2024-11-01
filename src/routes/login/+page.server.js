@@ -26,7 +26,6 @@ export const actions = {
 		}
 
 		try {
-			// Use PocketBase SDK for authentication
 			const authData = await locals.pb.collection('users').authWithPassword(formData.email, formData.password);
 
 			if (!authData.token) {
@@ -40,9 +39,12 @@ export const actions = {
 				};
 			}
 
-			throw redirect(307, "/");
+			// Include the Stripe customer ID in the session
+			locals.pb.authStore.model.stripeCustomerId = authData.stripeCustomerId;
+
+			throw redirect(307, "/dashboard");
 		} catch (err) {
-			console.error("Login error:", err); // Log the error for debugging
+			console.error("Login error:", err);
 			return {
 				data: formData,
 				errors: { email: err.data?.message || err.message || "An unexpected error occurred" }
