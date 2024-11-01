@@ -4,9 +4,11 @@ import { loginUserSchema } from "$lib/schemas";
 
 export const load = ({ locals }) => {
 	if (locals.pb?.authStore.isValid) {
-		throw redirect(303, '/');
+		throw redirect(303, '/dashboard');
 	}
-	return {};
+	return {
+		isAuthenticated: locals.pb?.authStore.isValid || false
+	};
 };
 
 export const actions = {
