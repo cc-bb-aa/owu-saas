@@ -1,4 +1,4 @@
-import { json } from '@sveltejs/kit';
+import { json, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ locals, cookies }) => {
@@ -14,7 +14,8 @@ export const POST: RequestHandler = async ({ locals, cookies }) => {
         httpOnly: true
     });
 
-    return json({ success: true });
+    // Redirect to the home page
+    throw redirect(303, '/');
 };
 
 export const GET: RequestHandler = async ({ locals }) => {
