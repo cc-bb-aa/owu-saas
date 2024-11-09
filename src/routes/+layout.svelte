@@ -13,7 +13,6 @@
 	import { Drawer, getDrawerStore } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings, DrawerStore } from '@skeletonlabs/skeleton';
 	import { initializeStores } from '@skeletonlabs/skeleton';
-
 	initializeStores();
 
 	const drawerStore = getDrawerStore();
@@ -28,20 +27,10 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	export let data;
-
-	async function logout() {
-		const response = await fetch('/logout', {
-			method: 'GET'
-		});
-
-		if (response.ok) {
-			goto('/', { invalidateAll: true });
-		}
-	}
+	console.log('Current user:', data.user);
 </script>
 
 <Drawer>
@@ -84,13 +73,19 @@
 			<div class="dark:text-gray-300 lg:pr-4">
 			</div>
 			{#if data.user}
-				<button class="btn btn-sm variant-ghost-surface" on:click={logout}>
-					<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Logout</span>
-				</button>
+				<form action="/logout" method="POST">
+					<button class="btn btn-sm variant-ghost-surface">
+						<a>
+							<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Logout</span>
+						</a>
+					</button>
+				</form>
 			{:else}
-				<a href="/login" class="btn btn-sm variant-ghost-surface">
-					<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Login</span>
-				</a>
+				<button class="btn btn-sm variant-ghost-surface">
+					<a href="/login">
+						<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Login</span>
+					</a>
+				</button>
 			{/if}
 		</div>
 	{:else if $drawerStore.id === 'example-2'}
@@ -155,13 +150,19 @@
 									</ul>
 								</div>
 								{#if data.user}
-									<button class="btn btn-sm variant-ghost-surface" on:click={logout}>
-										<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Logout</span>
-									</button>
+									<form action="/logout" method="POST">
+										<button class="btn btn-sm variant-ghost-surface">
+											<a>
+												<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Logout</span>
+											</a>
+										</button>
+									</form>
 								{:else}
-									<a href="/login" class="btn btn-sm variant-ghost-surface">
-										<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Login</span>
-									</a>
+									<button class="btn btn-sm variant-ghost-surface">
+										<a href="/login">
+											<span class="relative text-sm font-semibold lg:text-primary lg:dark:text-white">Login</span>
+										</a>
+									</button>
 								{/if}
 							</div>
 						</div>
@@ -171,7 +172,6 @@
 			<svelte:fragment slot="trail">
 			</svelte:fragment>
 		</AppBar>
-		<!-- App Bar -->
 	</svelte:fragment>
 	<!-- Page Route Content -->
 	<slot />
