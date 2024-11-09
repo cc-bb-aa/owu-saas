@@ -1,14 +1,12 @@
-<script>
+<script lang="ts">
  import { onMount } from 'svelte';
  import { loadStripe } from '@stripe/stripe-js';
  import { page } from '$app/stores';
 
- let customerPortalUrl = '';
+ export let data;
+
+ let stripePromise;
  let activeSection = 'Profile';
- let userDetails = {};
- let invoices = [];
- let subscription = null;
- let address = {};
 
  const sections = [
   { title: 'Profile', icon: '👤' },
@@ -19,42 +17,41 @@
  ];
 
  onMount(async () => {
-  const stripe = await loadStripe(import.meta.env.VITE_STRIPE_SECRET_KEY);
-  const customerId = $page.data.locals.pb.authStore.model.stripeCustomerId;
-  if (customerId) {
-   // Fetch customer portal URL
-   const portalResponse = await fetch('/api/create-customer-portal-session', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ customerId })
-   });
-   const portalData = await portalResponse.json();
-   customerPortalUrl = portalData.url;
-
-   // Fetch user details
-   const userResponse = await fetch('/api/user-details');
-   userDetails = await userResponse.json();
-
-   // Fetch invoices
-   const invoicesResponse = await fetch('/api/invoices');
-   invoices = await invoicesResponse.json();
-
-   // Fetch subscription
-   const subscriptionResponse = await fetch('/api/subscription');
-   subscription = await subscriptionResponse.json();
-
-   // Fetch address
-   const addressResponse = await fetch('/api/address');
-   address = await addressResponse.json();
-  }
+  stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
  });
-
- const redirectToCustomerPortal = () => {
-  window.location.href = customerPortalUrl;
- };
 
  const setActiveSection = (section) => {
   activeSection = section;
+ };
+
+ const handleSubscribe = async (priceId) => {
+  const stripe = await stripePromise;
+  const response = await fetch('/api/create-checkout-session', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify({ priceId })
+  });
+  const session = await response.json();
+  const result = await stripe.redirectToCheckout({
+   sessionId: session.id
+  });
+  if (result.error) {
+   console.error(result.error.message);
+  }
+ };
+
+ const handleUpdateSubscription = async (newPriceId) => {
+  const response = await fetch('/api/update-subscription', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify({ newPriceId })
+  });
+  if (response.ok) {
+   // Refresh page data
+   window.location.reload();
+  } else {
+   console.error('Failed to update subscription');
+  }
  };
 </script>
 
@@ -81,7 +78,6 @@
       <p><strong>Name:</strong> {userDetails.name}</p>
       <p><strong>Email:</strong> {userDetails.email}</p>
       <p><strong>Account Type:</strong> {userDetails.accountType}</p>
-      <!-- Add more profile details as needed -->
      </div>
     </section>
    {:else if activeSection === 'Account Details'}
@@ -91,7 +87,6 @@
       <p><strong>Username:</strong> {userDetails.username}</p>
       <p><strong>Account Created:</strong> {new Date(userDetails.created).toLocaleDateString()}</p>
       <p><strong>Last Login:</strong> {new Date(userDetails.lastLogin).toLocaleDateString()}</p>
-      <!-- Add more account details as needed -->
      </div>
     </section>
    {:else if activeSection === 'Invoices'}
@@ -123,16 +118,44 @@
      <h2>Subscription</h2>
      {#if subscription}
       <div class="subscription-details">
-       <p><strong>Plan:</strong> {subscription.plan.nickname}</p>
+       <p><strong>Current Plan:</strong> {subscription.plan.nickname}</p>
        <p><strong>Status:</strong> {subscription.status}</p>
        <p><strong>Current Period End:</strong> {new Date(subscription.current_period_end * 1000).toLocaleDateString()}</p>
        <p><strong>Amount:</strong> {(subscription.plan.amount / 100).toFixed(2)} {subscription.plan.currency.toUpperCase()} / {subscription.plan.interval}</p>
       </div>
+      <h3>Available Plans</h3>
+      <div class="available-plans">
+       {#each availablePlans as plan}
+        <div class="plan-card">
+         <h4>{plan.nickname}</h4>
+         <p>{(plan.amount / 100).toFixed(2)} {plan.currency.toUpperCase()} / {plan.interval}</p>
+         {#if plan.id !== subscription.plan.id}
+          <button on:click={() => handleUpdateSubscription(plan.id)} class="update-plan-btn">
+           Switch to this plan
+          </button>
+         {:else}
+          <p><em>Current plan</em></p>
+         {/if}
+        </div>
+       {/each}
+      </div>
       <button on:click={redirectToCustomerPortal} class="manage-subscription-btn">
-       Manage Subscription
+       Manage Subscription in Stripe Portal
       </button>
      {:else}
       <p>No active subscription found.</p>
+      <h3>Available Plans</h3>
+      <div class="available-plans">
+       {#each availablePlans as plan}
+        <div class="plan-card">
+         <h4>{plan.nickname}</h4>
+         <p>{(plan.amount / 100).toFixed(2)} {plan.currency.toUpperCase()} / {plan.interval}</p>
+         <button on:click={() => handleSubscribe(plan.id)} class="subscribe-btn">
+          Subscribe
+         </button>
+        </div>
+       {/each}
+      </div>
      {/if}
     </section>
    {:else if activeSection === 'Address'}
@@ -235,6 +258,39 @@
  .invoice-table th {
   background-color: #f2f2f2;
   font-weight: bold;
+ }
+
+ .available-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+ }
+
+ .plan-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+ }
+
+ .plan-card h4 {
+  margin-bottom: 10px;
+ }
+
+ .update-plan-btn, .subscribe-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+ }
+
+ .update-plan-btn:hover, .subscribe-btn:hover {
+  background-color: #218838;
  }
 
  .manage-subscription-btn {
