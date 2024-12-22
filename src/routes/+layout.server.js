@@ -1,9 +1,12 @@
 import PocketBase from 'pocketbase';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY, {
+  apiVersion: '2022-11-15'
+});
 
 export async function load({ locals }) {
-  // Check if the user is authenticated
   if (!locals.pb.authStore.isValid) {
-    // Return null for user and subscription if not authenticated
     return {
       user: null,
       subscription: null
@@ -11,9 +14,23 @@ export async function load({ locals }) {
   }
 
   try {
-    // Fetch the user data directly
-    const user = await locals.pb.collection('users').getOne(locals.pb.authStore.model.id);
-    const subscription = await getUsersSubscription(user.id);
+    const user = locals.user;
+    let subscription = null;
+
+    // Only try to fetch subscription if user has a stripeCustomerId
+    if (user.stripeCustomerId) {
+      try {
+        const subscriptions = await stripe.subscriptions.list({
+          customer: user.stripeCustomerId,
+          status: 'active',
+          limit: 1
+        });
+        subscription = subscriptions.data[0] || null;
+      } catch (stripeError) {
+        console.error('Error fetching Stripe subscription:', stripeError);
+        // Don't throw here, just log the error and continue with null subscription
+      }
+    }
 
     console.log('Current user:', user);
     console.log('User subscription:', subscription);
@@ -23,25 +40,10 @@ export async function load({ locals }) {
       subscription
     };
   } catch (err) {
-    console.error('Error fetching user data:', err);
-    // If user is not found, clear the auth store
-    if (err.status === 404) {
-      locals.pb.authStore.clear();
-    }
+    console.error('Error loading user data:', err);
     return {
       user: null,
       subscription: null
     };
-  }
-}
-
-async function getUsersSubscription(userId) {
-  const adminClient = new PocketBase(import.meta.env.VITE_PB_URL);
-  try {
-    const user = await adminClient.collection('users').getOne(userId);
-    return user.subscription || null; // Return null if subscription doesn't exist
-  } catch (err) {
-    console.error('Error fetching user subscription:', err);
-    return null;
   }
 }

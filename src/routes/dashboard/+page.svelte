@@ -6,6 +6,7 @@
  export let data;
 
  let stripePromise;
+ let customerPortalUrl = '';
  let activeSection = 'Profile';
 
  const sections = [
@@ -18,10 +19,28 @@
 
  onMount(async () => {
   stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+  const customerId = $page.data.locals.pb.authStore.model.stripeCustomerId;
+  if (customerId) {
+   const response = await fetch('/api/create-customer-portal-session', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ customerId })
+   });
+   const portalData = await response.json();
+   customerPortalUrl = portalData.url;
+  }
  });
 
  const setActiveSection = (section) => {
   activeSection = section;
+ };
+
+ const redirectToCustomerPortal = () => {
+  if (customerPortalUrl) {
+   window.location.href = customerPortalUrl;
+  }
  };
 
  const handleSubscribe = async (priceId) => {
@@ -37,20 +56,6 @@
   });
   if (result.error) {
    console.error(result.error.message);
-  }
- };
-
- const handleUpdateSubscription = async (newPriceId) => {
-  const response = await fetch('/api/update-subscription', {
-   method: 'POST',
-   headers: { 'Content-Type': 'application/json' },
-   body: JSON.stringify({ newPriceId })
-  });
-  if (response.ok) {
-   // Refresh page data
-   window.location.reload();
-  } else {
-   console.error('Failed to update subscription');
   }
  };
 </script>
@@ -75,78 +80,64 @@
     <section class="section-content">
      <h2>Profile</h2>
      <div class="profile-details">
-      <p><strong>Name:</strong> {userDetails.name}</p>
-      <p><strong>Email:</strong> {userDetails.email}</p>
-      <p><strong>Account Type:</strong> {userDetails.accountType}</p>
+      <p><strong>Name:</strong> {data.user.name}</p>
+      <p><strong>Email:</strong> {data.user.email}</p>
      </div>
     </section>
    {:else if activeSection === 'Account Details'}
     <section class="section-content">
      <h2>Account Details</h2>
      <div class="account-details">
-      <p><strong>Username:</strong> {userDetails.username}</p>
-      <p><strong>Account Created:</strong> {new Date(userDetails.created).toLocaleDateString()}</p>
-      <p><strong>Last Login:</strong> {new Date(userDetails.lastLogin).toLocaleDateString()}</p>
+      <p><strong>Username:</strong> {data.user.username}</p>
+      <p><strong>Account Created:</strong> {new Date(data.user.created).toLocaleDateString()}</p>
      </div>
     </section>
    {:else if activeSection === 'Invoices'}
     <section class="section-content">
      <h2>Invoices</h2>
-     <table class="invoice-table">
-      <thead>
-      <tr>
-       <th>Invoice Number</th>
-       <th>Date</th>
-       <th>Amount</th>
-       <th>Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      {#each invoices as invoice}
+     {#if data.invoices && data.invoices.length > 0}
+      <table class="invoice-table">
+       <thead>
        <tr>
-        <td>{invoice.number}</td>
-        <td>{new Date(invoice.created * 1000).toLocaleDateString()}</td>
-        <td>{(invoice.total / 100).toFixed(2)} {invoice.currency.toUpperCase()}</td>
-        <td>{invoice.status}</td>
+        <th>Invoice Number</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Status</th>
        </tr>
-      {/each}
-      </tbody>
-     </table>
+       </thead>
+       <tbody>
+       {#each data.invoices as invoice}
+        <tr>
+         <td>{invoice.number}</td>
+         <td>{new Date(invoice.created * 1000).toLocaleDateString()}</td>
+         <td>{(invoice.total / 100).toFixed(2)} {invoice.currency.toUpperCase()}</td>
+         <td>{invoice.status}</td>
+        </tr>
+       {/each}
+       </tbody>
+      </table>
+     {:else}
+      <p>No invoices found.</p>
+     {/if}
     </section>
    {:else if activeSection === 'Subscription'}
     <section class="section-content">
      <h2>Subscription</h2>
-     {#if subscription}
+     {#if data.subscription}
       <div class="subscription-details">
-       <p><strong>Current Plan:</strong> {subscription.plan.nickname}</p>
-       <p><strong>Status:</strong> {subscription.status}</p>
-       <p><strong>Current Period End:</strong> {new Date(subscription.current_period_end * 1000).toLocaleDateString()}</p>
-       <p><strong>Amount:</strong> {(subscription.plan.amount / 100).toFixed(2)} {subscription.plan.currency.toUpperCase()} / {subscription.plan.interval}</p>
+       <p><strong>Plan:</strong> {data.subscription.plan.nickname}</p>
+       <p><strong>Status:</strong> {data.subscription.status}</p>
+       <p><strong>Current Period End:</strong> {new Date(data.subscription.current_period_end * 1000).toLocaleDateString()}</p>
+       <p><strong>Amount:</strong> {(data.subscription.plan.amount / 100).toFixed(2)} {data.subscription.plan.currency.toUpperCase()} / {data.subscription.plan.interval}</p>
       </div>
-      <h3>Available Plans</h3>
-      <div class="available-plans">
-       {#each availablePlans as plan}
-        <div class="plan-card">
-         <h4>{plan.nickname}</h4>
-         <p>{(plan.amount / 100).toFixed(2)} {plan.currency.toUpperCase()} / {plan.interval}</p>
-         {#if plan.id !== subscription.plan.id}
-          <button on:click={() => handleUpdateSubscription(plan.id)} class="update-plan-btn">
-           Switch to this plan
-          </button>
-         {:else}
-          <p><em>Current plan</em></p>
-         {/if}
-        </div>
-       {/each}
-      </div>
-      <button on:click={redirectToCustomerPortal} class="manage-subscription-btn">
-       Manage Subscription in Stripe Portal
+      <button on:click={redirectToCustomerPortal} class="manage-subscription-btn" disabled={!customerPortalUrl}>
+       Manage Subscription
       </button>
      {:else}
       <p>No active subscription found.</p>
       <h3>Available Plans</h3>
       <div class="available-plans">
-       {#each availablePlans as plan}
+       {#each data.availablePlans as plan}
         <div class="plan-card">
          <h4>{plan.nickname}</h4>
          <p>{(plan.amount / 100).toFixed(2)} {plan.currency.toUpperCase()} / {plan.interval}</p>
@@ -161,14 +152,18 @@
    {:else if activeSection === 'Address'}
     <section class="section-content">
      <h2>Address</h2>
-     <div class="address-details">
-      <p><strong>Street:</strong> {address.line1}</p>
-      {#if address.line2}<p><strong>Street 2:</strong> {address.line2}</p>{/if}
-      <p><strong>City:</strong> {address.city}</p>
-      <p><strong>State/Province:</strong> {address.state}</p>
-      <p><strong>Postal Code:</strong> {address.postal_code}</p>
-      <p><strong>Country:</strong> {address.country}</p>
-     </div>
+     {#if data.address}
+      <div class="address-details">
+       <p><strong>Street:</strong> {data.address.line1}</p>
+       {#if data.address.line2}<p><strong>Street 2:</strong> {data.address.line2}</p>{/if}
+       <p><strong>City:</strong> {data.address.city}</p>
+       <p><strong>State/Province:</strong> {data.address.state}</p>
+       <p><strong>Postal Code:</strong> {data.address.postal_code}</p>
+       <p><strong>Country:</strong> {data.address.country}</p>
+      </div>
+     {:else}
+      <p>No address information found.</p>
+     {/if}
     </section>
    {/if}
   </main>
@@ -278,7 +273,7 @@
   margin-bottom: 10px;
  }
 
- .update-plan-btn, .subscribe-btn {
+ .subscribe-btn, .manage-subscription-btn {
   background-color: #28a745;
   color: white;
   border: none;
@@ -289,22 +284,12 @@
   margin-top: 10px;
  }
 
- .update-plan-btn:hover, .subscribe-btn:hover {
+ .subscribe-btn:hover, .manage-subscription-btn:hover {
   background-color: #218838;
  }
 
- .manage-subscription-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px;
- }
-
- .manage-subscription-btn:hover {
-  background-color: #0056b3;
+ .subscribe-btn:disabled, .manage-subscription-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
  }
 </style>

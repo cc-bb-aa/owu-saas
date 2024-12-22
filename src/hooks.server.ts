@@ -2,6 +2,12 @@ import type { Handle } from '@sveltejs/kit';
 import PocketBase from 'pocketbase';
 import { serializeNonPOJOs } from '$lib/utils';
 
+import Stripe from 'stripe';
+
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY, {
+	apiVersion: '2022-11-15'
+});
+
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(import.meta.env.VITE_PB_URL);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
