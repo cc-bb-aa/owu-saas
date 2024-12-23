@@ -1,5 +1,6 @@
 import PocketBase from 'pocketbase';
 import Stripe from 'stripe';
+import { loadStripe } from '@stripe/stripe-js';
 
 const stripe = new Stripe(`${import.meta.env.VITE_STRIPE_SECRET_KEY}`, {
   apiVersion: '2022-11-15'
@@ -17,11 +18,13 @@ export async function load({ locals }) {
     const user = locals.user;
     let subscription = null;
 
+    console.log('User: '+ user.name);
+
     // Only try to fetch subscription if user has a stripeCustomerId
-    if (user.stripeCustomerId) {
+    if (user.subscription) {
       try {
         const subscriptions = await stripe.subscriptions.list({
-          customer: user.stripeCustomerId,
+          customer: user.stripe_customer_id,
           status: 'active',
           limit: 1
         });

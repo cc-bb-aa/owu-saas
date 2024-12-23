@@ -1,13 +1,13 @@
 <script lang="ts">
  import { onMount } from 'svelte';
  import { loadStripe } from '@stripe/stripe-js';
- import { page } from '$app/stores';
 
- export let data;
+ import type { PageData } from './$types';
+ export let data: PageData;
+ let activeSection = 'Profile';
 
  let stripePromise;
  let customerPortalUrl = '';
- let activeSection = 'Profile';
 
  const sections = [
   { title: 'Profile', icon: '👤' },
@@ -18,8 +18,8 @@
  ];
 
  onMount(async () => {
-  stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-  const customerId = $page.data.locals.pb.authStore.model.stripeCustomerId;
+  stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC_KEY}`);
+  const customerId = data.user?.stripeCustomerId;
   if (customerId) {
    const response = await fetch('/api/create-customer-portal-session', {
     method: 'POST',
